@@ -28,9 +28,9 @@ def CreateCoProcessor():
       renderView1.AxesGrid = 'GridAxes3DActor'
       renderView1.CenterOfRotation = [14.8828125, -0.1171875, -0.1171875]
       renderView1.StereoType = 0
-      renderView1.CameraPosition = [-9.862858464832497, 22.096345905305974, -61.98907438271981]
-      renderView1.CameraFocalPoint = [14.882812499999998, -0.11718750000001688, -0.11718749999998392]
-      renderView1.CameraViewUp = [0.07147507785577147, 0.9475222340865672, 0.31159738310376106]
+      renderView1.CameraPosition = [22.353455062599156, -47.063683051444414, -51.829233866556066]
+      renderView1.CameraFocalPoint = [14.882812500000043, -0.11718749999997835, -0.11718749999995848]
+      renderView1.CameraViewUp = [0.9932289592979007, 0.03660623501901246, 0.11025524010105864]
       renderView1.CameraParallelScale = 18.179932583221223
       renderView1.Background = [0.32, 0.34, 0.43]
 
@@ -38,7 +38,7 @@ def CreateCoProcessor():
       # and provide it with information such as the filename to use,
       # how frequently to write the images, etc.
       coprocessor.RegisterView(renderView1,
-          filename='image_%t.png', freq=1, fittoscreen=0, magnification=1, width=659, height=621, cinema={})
+          filename='image_%t.png', freq=1, fittoscreen=0, magnification=1, width=659, height=621, cinema={"composite":True, "camera":"Spherical", "phi":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150],"theta":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150], "initial":{ "eye": [22.3535,-47.0637,-51.8292], "at": [14.8828,-0.117188,-0.117188], "up": [0.993229,0.0366062,0.110255] } })
       renderView1.ViewTime = datadescription.GetTime()
 
       # ----------------------------------------------------------------
@@ -47,7 +47,7 @@ def CreateCoProcessor():
 
       # create a new 'XML Partitioned Polydata Reader'
       # create a producer from a simulation input
-      contour_0pvtp = coprocessor.CreateProducer(datadescription, 'input')
+      contour_0pvtp = coprocessor.CreateProducer(datadescription, 'magnetic')
 
       # ----------------------------------------------------------------
       # setup color maps and opacity mapes used in the visualization
@@ -103,7 +103,7 @@ def CreateCoProcessor():
 
   coprocessor = CoProcessor()
   # these are the frequencies at which the coprocessor updates.
-  freqs = {'input': [1]}
+  freqs = {'magnetic': [1]}
   coprocessor.SetUpdateFrequencies(freqs)
   return coprocessor
 
