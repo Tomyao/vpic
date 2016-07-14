@@ -12,6 +12,7 @@ print 'in test'
 # ----------------------- CoProcessor definition -----------------------
 
 def CreateCoProcessor():
+  print 'creating coprocessor'
   def _CreatePipeline(coprocessor, datadescription):
     class Pipeline:
       # state file generated using paraview version 5.1.0
@@ -114,6 +115,7 @@ def CreateCoProcessor():
 # It will be automatically setup when coprocessor.UpdateProducers() is called the
 # first time.
 coprocessor = CreateCoProcessor()
+print 'created coprocessor'
 
 #--------------------------------------------------------------
 # Enable Live-Visualizaton with ParaView
