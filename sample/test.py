@@ -2,6 +2,7 @@
 from paraview.simple import *
 from paraview import coprocessing
 
+print 'in test'
 
 #--------------------------------------------------------------
 # Code generated from cpstate.py to create the CoProcessor.
