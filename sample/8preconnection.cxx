@@ -681,6 +681,7 @@ begin_initialization {
         //pythonNames.push_back("extractsurface.py");
         //pythonNames.push_back("contour.py");
         pythonNames.push_back("contourbenchmark.py");
+        pythonNames.push_back("test.py");
 
         coprocessorinitialize(pythonNames);
 
