@@ -2,7 +2,6 @@
 from paraview.simple import *
 from paraview import coprocessing
 
-print 'in test'
 
 #--------------------------------------------------------------
 # Code generated from cpstate.py to create the CoProcessor.
@@ -12,7 +11,6 @@ print 'in test'
 # ----------------------- CoProcessor definition -----------------------
 
 def CreateCoProcessor():
-  print 'creating coprocessor'
   def _CreatePipeline(coprocessor, datadescription):
     class Pipeline:
       # state file generated using paraview version 5.1.0
@@ -30,9 +28,9 @@ def CreateCoProcessor():
       renderView1.AxesGrid = 'GridAxes3DActor'
       renderView1.CenterOfRotation = [14.8828125, -0.1171875, -0.1171875]
       renderView1.StereoType = 0
-      renderView1.CameraPosition = [22.353455062599156, -47.063683051444414, -51.829233866556066]
-      renderView1.CameraFocalPoint = [14.882812500000043, -0.11718749999997835, -0.11718749999995848]
-      renderView1.CameraViewUp = [0.9932289592979007, 0.03660623501901246, 0.11025524010105864]
+      renderView1.CameraPosition = [-16.331702117140257, -11.972087171753932, 61.681154834284065]
+      renderView1.CameraFocalPoint = [14.8828125, -0.11718749999999904, -0.11718750000000272]
+      renderView1.CameraViewUp = [-0.8259265409848415, 0.45753180807429816, -0.32940855103818834]
       renderView1.CameraParallelScale = 18.179932583221223
       renderView1.Background = [0.32, 0.34, 0.43]
 
@@ -40,7 +38,7 @@ def CreateCoProcessor():
       # and provide it with information such as the filename to use,
       # how frequently to write the images, etc.
       coprocessor.RegisterView(renderView1,
-          filename='image_%t.png', freq=1, fittoscreen=0, magnification=1, width=659, height=621, cinema={"composite":True, "camera":"Spherical", "phi":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150],"theta":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150], "initial":{ "eye": [22.3535,-47.0637,-51.8292], "at": [14.8828,-0.117188,-0.117188], "up": [0.993229,0.0366062,0.110255] } })
+          filename='image_%t.png', freq=1, fittoscreen=0, magnification=1, width=659, height=621, cinema={"composite":True, "camera":"Spherical", "phi":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150],"theta":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150], "initial":{ "eye": [-16.3317,-11.9721,61.6812], "at": [14.8828,-0.117188,-0.117188], "up": [-0.825927,0.457532,-0.329409] } })
       renderView1.ViewTime = datadescription.GetTime()
 
       # ----------------------------------------------------------------
@@ -49,22 +47,22 @@ def CreateCoProcessor():
 
       # create a new 'XML Partitioned Polydata Reader'
       # create a producer from a simulation input
-      contour_0pvtp = coprocessor.CreateProducer(datadescription, 'magnetic')
+      contour_0pvtp = coprocessor.CreateProducer(datadescription, 'input')
 
       # ----------------------------------------------------------------
       # setup color maps and opacity mapes used in the visualization
       # note: the Get..() functions create a new object, if needed
       # ----------------------------------------------------------------
 
-      # get color transfer function/color map for 'MagneticField'
-      magneticFieldLUT = GetColorTransferFunction('MagneticField')
-      magneticFieldLUT.RGBPoints = [0.490003026727033, 0.231373, 0.298039, 0.752941, 0.4999999994921213, 0.865003, 0.865003, 0.865003, 0.5099969722572096, 0.705882, 0.0156863, 0.14902]
-      magneticFieldLUT.ScalarRangeInitialized = 1.0
+      # get color transfer function/color map for 'ChargeDensityHhydro'
+      chargeDensityHhydroLUT = GetColorTransferFunction('ChargeDensityHhydro')
+      chargeDensityHhydroLUT.RGBPoints = [0.9125778675079346, 0.231373, 0.298039, 0.752941, 1.0047980546951294, 0.865003, 0.865003, 0.865003, 1.0970182418823242, 0.705882, 0.0156863, 0.14902]
+      chargeDensityHhydroLUT.ScalarRangeInitialized = 1.0
 
-      # get opacity transfer function/opacity map for 'MagneticField'
-      magneticFieldPWF = GetOpacityTransferFunction('MagneticField')
-      magneticFieldPWF.Points = [0.490003026727033, 0.0, 0.5, 0.0, 0.5099969722572096, 1.0, 0.5, 0.0]
-      magneticFieldPWF.ScalarRangeInitialized = 1
+      # get opacity transfer function/opacity map for 'ChargeDensityHhydro'
+      chargeDensityHhydroPWF = GetOpacityTransferFunction('ChargeDensityHhydro')
+      chargeDensityHhydroPWF.Points = [0.9125778675079346, 0.0, 0.5, 0.0, 1.0970182418823242, 1.0, 0.5, 0.0]
+      chargeDensityHhydroPWF.ScalarRangeInitialized = 1
 
       # ----------------------------------------------------------------
       # setup the visualization in view 'renderView1'
@@ -73,8 +71,8 @@ def CreateCoProcessor():
       # show data from contour_0pvtp
       contour_0pvtpDisplay = Show(contour_0pvtp, renderView1)
       # trace defaults for the display properties.
-      contour_0pvtpDisplay.ColorArrayName = ['POINTS', 'Magnetic Field']
-      contour_0pvtpDisplay.LookupTable = magneticFieldLUT
+      contour_0pvtpDisplay.ColorArrayName = ['POINTS', 'Charge Density(Hhydro)']
+      contour_0pvtpDisplay.LookupTable = chargeDensityHhydroLUT
       contour_0pvtpDisplay.OSPRayScaleArray = 'Charge Density(Hhydro)'
       contour_0pvtpDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
       contour_0pvtpDisplay.GlyphType = 'Arrow'
@@ -88,10 +86,10 @@ def CreateCoProcessor():
 
       # setup the color legend parameters for each legend in this view
 
-      # get color legend/bar for magneticFieldLUT in view renderView1
-      magneticFieldLUTColorBar = GetScalarBar(magneticFieldLUT, renderView1)
-      magneticFieldLUTColorBar.Title = 'Magnetic Field'
-      magneticFieldLUTColorBar.ComponentTitle = 'Magnitude'
+      # get color legend/bar for chargeDensityHhydroLUT in view renderView1
+      chargeDensityHhydroLUTColorBar = GetScalarBar(chargeDensityHhydroLUT, renderView1)
+      chargeDensityHhydroLUTColorBar.Title = 'Charge Density(Hhydro)'
+      chargeDensityHhydroLUTColorBar.ComponentTitle = ''
 
       # ----------------------------------------------------------------
       # finally, restore active source
@@ -105,7 +103,7 @@ def CreateCoProcessor():
 
   coprocessor = CoProcessor()
   # these are the frequencies at which the coprocessor updates.
-  freqs = {'magnetic': [1]}
+  freqs = {'input': [1]}
   coprocessor.SetUpdateFrequencies(freqs)
   return coprocessor
 
@@ -115,7 +113,6 @@ def CreateCoProcessor():
 # It will be automatically setup when coprocessor.UpdateProducers() is called the
 # first time.
 coprocessor = CreateCoProcessor()
-print 'created coprocessor'
 
 #--------------------------------------------------------------
 # Enable Live-Visualizaton with ParaView
