@@ -72,8 +72,8 @@ def CreateCoProcessor():
       # trace defaults for the display properties.
       contour_0pvtpDisplay.ColorArrayName = ['POINTS', 'Charge Density(Hhydro)']
       contour_0pvtpDisplay.LookupTable = chargeDensityHhydroLUT
-      contour_0pvtpDisplay.OSPRayScaleArray = 'Charge Density(Hhydro)'
-      contour_0pvtpDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
+      #contour_0pvtpDisplay.OSPRayScaleArray = 'Charge Density(Hhydro)'
+      #contour_0pvtpDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
       contour_0pvtpDisplay.GlyphType = 'Arrow'
       # contour_0pvtpDisplay.SetScaleArray = ['POINTS', 'Charge Density(Hhydro)']
       # contour_0pvtpDisplay.ScaleTransferFunction = 'PiecewiseFunction'
