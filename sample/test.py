@@ -7,7 +7,6 @@ from paraview import coprocessing
 # Code generated from cpstate.py to create the CoProcessor.
 # ParaView 5.1.0 64 bits
 
-
 # ----------------------- CoProcessor definition -----------------------
 
 def CreateCoProcessor():
@@ -28,9 +27,9 @@ def CreateCoProcessor():
       renderView1.AxesGrid = 'GridAxes3DActor'
       renderView1.CenterOfRotation = [14.8828125, -0.1171875, -0.1171875]
       renderView1.StereoType = 0
-      renderView1.CameraPosition = [-16.331702117140257, -11.972087171753932, 61.681154834284065]
-      renderView1.CameraFocalPoint = [14.8828125, -0.11718749999999904, -0.11718750000000272]
-      renderView1.CameraViewUp = [-0.8259265409848415, 0.45753180807429816, -0.32940855103818834]
+      renderView1.CameraPosition = [-9.857665354711155, 10.051236592383963, 64.83226662606916]
+      renderView1.CameraFocalPoint = [14.882812499999991, -0.11718749999999656, -0.1171874999999906]
+      renderView1.CameraViewUp = [-0.9333037957742268, 0.019461624480352647, -0.35855999493251645]
       renderView1.CameraParallelScale = 18.179932583221223
       renderView1.Background = [0.32, 0.34, 0.43]
 
@@ -38,7 +37,7 @@ def CreateCoProcessor():
       # and provide it with information such as the filename to use,
       # how frequently to write the images, etc.
       coprocessor.RegisterView(renderView1,
-          filename='image_%t.png', freq=1, fittoscreen=0, magnification=1, width=659, height=621, cinema={"composite":True, "camera":"Spherical", "phi":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150],"theta":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150], "initial":{ "eye": [-16.3317,-11.9721,61.6812], "at": [14.8828,-0.117188,-0.117188], "up": [-0.825927,0.457532,-0.329409] } })
+          filename='image_%t.png', freq=20, fittoscreen=0, magnification=1, width=659, height=621, cinema={"composite":True, "camera":"Spherical", "phi":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150],"theta":[-180,-150,-120,-90,-60,-30,0,30,60,90,120,150], "initial":{ "eye": [-9.85767,10.0512,64.8323], "at": [14.8828,-0.117188,-0.117188], "up": [-0.933304,0.0194616,-0.35856] } })
       renderView1.ViewTime = datadescription.GetTime()
 
       # ----------------------------------------------------------------
@@ -76,10 +75,10 @@ def CreateCoProcessor():
       contour_0pvtpDisplay.OSPRayScaleArray = 'Charge Density(Hhydro)'
       contour_0pvtpDisplay.OSPRayScaleFunction = 'PiecewiseFunction'
       contour_0pvtpDisplay.GlyphType = 'Arrow'
-      contour_0pvtpDisplay.SetScaleArray = ['POINTS', 'Charge Density(Hhydro)']
-      contour_0pvtpDisplay.ScaleTransferFunction = 'PiecewiseFunction'
-      contour_0pvtpDisplay.OpacityArray = ['POINTS', 'Charge Density(Hhydro)']
-      contour_0pvtpDisplay.OpacityTransferFunction = 'PiecewiseFunction'
+      # contour_0pvtpDisplay.SetScaleArray = ['POINTS', 'Charge Density(Hhydro)']
+      # contour_0pvtpDisplay.ScaleTransferFunction = 'PiecewiseFunction'
+      # contour_0pvtpDisplay.OpacityArray = ['POINTS', 'Charge Density(Hhydro)']
+      # contour_0pvtpDisplay.OpacityTransferFunction = 'PiecewiseFunction'
 
       # show color legend
       contour_0pvtpDisplay.SetScalarBarVisibility(renderView1, True)
@@ -103,7 +102,7 @@ def CreateCoProcessor():
 
   coprocessor = CoProcessor()
   # these are the frequencies at which the coprocessor updates.
-  freqs = {'input': [1]}
+  freqs = {'input': [20]}
   coprocessor.SetUpdateFrequencies(freqs)
   return coprocessor
 
